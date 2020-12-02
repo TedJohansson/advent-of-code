@@ -1,8 +1,10 @@
+from utils.file_handler import FileHandler
+
+
 class AccountingMistakeFinder:
-    def __init__(self, accounting_file_name: str, sum_number: int):
+    def __init__(self, entries: list, sum_number: int):
         self.sum_number = sum_number
-        with open(accounting_file_name) as accounting_file:
-            self.accounting_entries = [int(x) for x in accounting_file.readlines()]
+        self.accounting_entries = entries
 
     def find_equal(self, idx, value, sum_triple=False):
         for second_idx, entry in enumerate(self.accounting_entries[idx+1:]):
@@ -29,6 +31,8 @@ class AccountingMistakeFinder:
 
 
 if __name__ == "__main__":
-    find_it = AccountingMistakeFinder("input.txt", 2020)
+    file_handler = FileHandler("input.txt")
+    file_handler.load_int()
+    find_it = AccountingMistakeFinder(file_handler.file_lines, 2020)
     print("The two numbers equal: {}".format(find_it.find_the_dues()))
     print("The three numbers equal: {}".format(find_it.find_the_triple()))
