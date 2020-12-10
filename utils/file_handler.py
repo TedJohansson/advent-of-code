@@ -16,7 +16,7 @@ class FileHandler:
         joined_lines = []
         joined_line = ""
         for line in self.file_lines:
-            if len(line) > 1:
+            if len(line) > 0:
                 joined_line = f"{joined_line} {line}"
             else:
                 joined_lines.append(joined_line)
