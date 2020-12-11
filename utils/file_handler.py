@@ -15,9 +15,11 @@ class FileHandler:
     def join_on_not_empty(self):
         joined_lines = []
         joined_line = ""
-        for line in self.file_lines:
+        for idx, line in enumerate(self.file_lines):
             if len(line) > 0:
                 joined_line = f"{joined_line} {line}"
+                if idx == len(self.file_lines)-1:
+                    joined_lines.append(joined_line)
             else:
                 joined_lines.append(joined_line)
                 joined_line = ""
